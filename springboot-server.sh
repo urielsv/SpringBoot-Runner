@@ -17,6 +17,16 @@ source "$SCRIPT_DIR/lib/tomcat.sh"
 source "$SCRIPT_DIR/lib/build.sh"
 source "$SCRIPT_DIR/lib/interactive.sh"
 
+# Get the real user's home directory even when running with sudo
+if [ -n "$SUDO_USER" ]; then
+  REAL_USER_HOME=$(eval echo ~$SUDO_USER)
+else
+  REAL_USER_HOME="$HOME"
+fi
+
+# Export this for use in other scripts
+export REAL_USER_HOME
+
 # Main entry point
 main() {
   # Process command

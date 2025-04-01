@@ -5,7 +5,7 @@
 # Last updated 31/03/2025
 
 # Configuration file paths
-CONFIG_FILE="$HOME/.springboot-server-config.sh"
+CONFIG_FILE="$REAL_USER_HOME/.springboot-server-config.sh"
 
 # Default configuration values
 TOMCAT_HOME=""
@@ -31,6 +31,18 @@ load_config() {
   if [ -n "$config_to_use" ]; then
     echo -e "${BLUE}Loading configuration from $config_to_use${NC}"
     source "$config_to_use"
+    
+    # Expand tilde in paths
+    TOMCAT_HOME="${TOMCAT_HOME/#\~/$REAL_USER_HOME}"
+    APP_WAR_PATH="${APP_WAR_PATH/#\~/$REAL_USER_HOME}"
+    SOURCE_DIR="${SOURCE_DIR/#\~/$REAL_USER_HOME}"
+    JAVA_HOME="${JAVA_HOME/#\~/$REAL_USER_HOME}"
+    
+    # If there's a BUILD_COMMAND, handle tilde in it as well
+    if [ -n "$BUILD_COMMAND" ]; then
+      BUILD_COMMAND="${BUILD_COMMAND//\~/$REAL_USER_HOME}"
+    fi
+
     validate_config
   else
     echo -e "${YELLOW}Configuration setup is needed to use this script. Please run '$0 setup' to create a configuration.${NC}"
@@ -107,8 +119,8 @@ setup_config() {
   read -p "Java home directory [$detected_java]: " input_java
   JAVA_HOME=${input_java:-$detected_java}
   
-  read -p "Application name [springapp]: " input_app_name
-  APP_NAME=${input_app_name:-springapp}
+  read -p "Application name [webapp]: " input_app_name
+  APP_NAME=${input_app_name:-webapp}
   
   read -p "Source directory: " SOURCE_DIR
   
@@ -130,7 +142,7 @@ setup_config() {
   # Determine WAR path based on build system
   local default_war_path=""
   if [ "$BUILD_TYPE" = "maven" ]; then
-    default_war_path="$SOURCE_DIR/target/$APP_NAME.war"
+    default_war_path="$SOURCE_DIR/webapp/target/$APP_NAME.war"
   fi
   
   read -p "WAR file path [$default_war_path]: " input_war_path
@@ -192,7 +204,7 @@ install_system() {
 # This is the system-wide configuration
 # Users can override by creating $HOME/.springboot-server-config.sh
 TOMCAT_HOME=\"\"
-APP_NAME=\"springapp\"
+APP_NAME=\"webapp\"
 APP_WAR_PATH=\"\"
 SOURCE_DIR=\"\"
 JAVA_HOME=\"\"
