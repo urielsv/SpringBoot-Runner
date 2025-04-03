@@ -1,9 +1,9 @@
-# SpringBoot-Runner
-A command-line tool for running, reloading, hot-reloading, building and deploying Java SpringBoot applications with Tomcat 9.
+# SpringTomcat-Runner
+A command-line tool for running, reloading, hot-reloading, building and deploying Java Spring applications with Tomcat 9.
 
 # Features
 - Start, stop, and restart Tomcat server
-- Deploy SpringBoot WAR applications to Tomcat
+- Deploy Spring WAR applications to Tomcat
 - hot reload capability (requires inotifywait)
 - Automatic file watching and reloading on changes
 - Interactive mode with keyboard shortcuts
@@ -20,57 +20,57 @@ Before using this tool please ensure you have installed:
 # Installation
 1. Clone the repository
    ```
-   bashgit clone https://github.com/urielsv/SpringBoot-Runner.git
-   cd SpringBoot-Runner
+   bashgit clone https://github.com/urielsv/Spring-Runner.git
+   cd Spring-Runner
    ```
 2. Make the script executable:
    ```
-   chmod +x springboot-server.sh
+   chmod +x Spring-server.sh
    chmod +x lib/*.sh
    ```
 3. Run the setup script
       ```
-   ./springboot-server.sh setup
+   ./Spring-server.sh setup
    ```
    And follow the steps to complete the installation process.
 4. (Optional) Make the script system-wide
    ```
-   sudo ./springboot-server.sh install
+   sudo ./Spring-server.sh install
    ```
-   This will make `springboot-server` command available everywhere on your system.
+   This will make `Spring-server` command available everywhere on your system.
 
 # Usage
 ```
 # Start the Tomcat server
-./springboot-server.sh start
+./Spring-server.sh start
 
 # Stop the Tomcat server
-./springboot-server.sh stop
+./Spring-server.sh stop
 
 # Restart the Tomcat server
-./springboot-server.sh restart
+./Spring-server.sh restart
 
-# Build your SpringBoot application
-./springboot-server.sh build
+# Build your Spring application
+./Spring-server.sh build
 
 # Deploy your application to Tomcat
-./springboot-server.sh deploy
+./Spring-server.sh deploy
 
 # Perform a hot reload
-./springboot-server.sh hotreload
+./Spring-server.sh hotreload
 
 # Watch for changes and automatically reload
-./springboot-server.sh watch
+./Spring-server.sh watch
 
 # Show server status
-./springboot-server.sh status
+./Spring-server.sh status
 ```
  If you are encountering errors please check the "Permissions" section
 
 # Interactive Mode
 Interactive mode provides keyboard shortcuts for common operations:
 ```
-./springboot-server.sh interactive
+./Spring-server.sh interactive
 ```
 
 In this mode, you can use the following keys:
@@ -86,13 +86,13 @@ In this mode, you can use the following keys:
 
 # Configuration
 The tool uses configuration files in the following locations:
-- User specific: ~/.springboot-server-config.sh
-- System-wide: /etc/springboot-server/config.sh
+- User specific: ~/.Spring-server-config.sh
+- System-wide: /etc/Spring-server/config.sh
 
 # Permissions
 If you encounter permission issues when trying to start Tomcat, you may need to run the tool with sudo:
 ```
-sudo ./springboot-server.sh start
+sudo ./Spring-server.sh start
 ```
 or, you can set the proper permissions on your Tomcat installation:
 ```
