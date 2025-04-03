@@ -62,7 +62,7 @@ check_dependencies() {
 }
 
 show_usage() {
-  echo -e "${BOLD}${CYAN}SpringBoot Tomcat Development Server${NC}"
+  echo -e "${BOLD}${CYAN}Spring Tomcat Development Server${NC}"
   echo -e "${CYAN}Usage: $0 [command]${NC}"
   echo ""
   echo -e "${BOLD}Commands:${NC}"
@@ -94,7 +94,7 @@ show_usage() {
 }
 
 show_version() {
-  echo -e "${BOLD}${CYAN}SpringBoot Tomcat Development Server${NC}"
+  echo -e "${BOLD}${CYAN}Spring Tomcat Development Server${NC}"
   echo -e "Version: $VERSION"
   echo -e "Author: Uriel Sosa Vazquez <urielsosavazquez@gmail.com>"
   echo -e "License: MIT"
@@ -102,7 +102,7 @@ show_version() {
 
 show_banner() {
   echo -e "${BOLD}${CYAN}==================================${NC}"
-  echo -e "${BOLD}${CYAN}SpringBoot Tomcat Development Server${NC}"
+  echo -e "${BOLD}${CYAN}Spring Tomcat Development Server${NC}"
   echo -e "${BOLD}${CYAN}==================================${NC}"
   echo -e "${CYAN}Version: $VERSION${NC}"
 }
