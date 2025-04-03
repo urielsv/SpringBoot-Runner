@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# springboot-server.sh - Main script for SpringBoot Tomcat Development Server
+# Spring-server.sh - Main script for Spring Tomcat Development Server
 # author: urielsv <urielsosavazquez@gmail.com>
 # Last updated 31/03/2025
 
