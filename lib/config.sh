@@ -5,7 +5,7 @@
 # Last updated 31/03/2025
 
 # Configuration file paths
-CONFIG_FILE="$REAL_USER_HOME/.springboot-server-config.sh"
+CONFIG_FILE="$REAL_USER_HOME/.spring-server-config.sh"
 
 # Default configuration values
 TOMCAT_HOME=""
@@ -92,7 +92,7 @@ validate_config() {
 }
 
 setup_config() {
-  echo -e "${BLUE}Setting up SpringBoot Server configuration...${NC}"
+  echo -e "${BLUE}Setting up Spring Server configuration...${NC}"
   echo -e "${YELLOW}Press Enter to accept the default value (shown in brackets)${NC}"
   
   # Detect Java
@@ -159,7 +159,7 @@ setup_config() {
   
   # Create configuration file
   cat > "$CONFIG_FILE" << EOF
-# SpringBoot Server Configuration
+# Spring Server Configuration
 TOMCAT_HOME="$TOMCAT_HOME"
 APP_NAME="$APP_NAME"
 APP_WAR_PATH="$APP_WAR_PATH"
@@ -177,7 +177,7 @@ EOF
 }
 
 install_system() {
-  echo -e "${BLUE}Installing SpringBoot Server system-wide...${NC}"
+  echo -e "${BLUE}Installing Spring Server system-wide...${NC}"
   
   # Get the script's path
   SCRIPT_PATH=$(readlink -f "$0")
@@ -186,23 +186,23 @@ install_system() {
   
   # Create installation directory
   sudo mkdir -p /usr/local/bin
-  sudo mkdir -p /usr/local/lib/springboot-server
-  sudo mkdir -p /etc/springboot-server
+  sudo mkdir -p /usr/local/lib/spring-server
+  sudo mkdir -p /etc/spring-server
   
   # Copy the main script
-  sudo cp "$SCRIPT_PATH" /usr/local/bin/springboot-server
-  sudo chmod +x /usr/local/bin/springboot-server
+  sudo cp "$SCRIPT_PATH" /usr/local/bin/spring-server
+  sudo chmod +x /usr/local/bin/spring-server
   
   # Copy the library files
-  sudo cp -r "$SCRIPT_DIR/lib" /usr/local/lib/springboot-server/
+  sudo cp -r "$SCRIPT_DIR/lib" /usr/local/lib/spring-server/
   
   # Create default config file if it doesn't exist
   if [ ! -f "$DEFAULT_CONFIG_FILE" ]; then
     sudo mkdir -p $(dirname "$DEFAULT_CONFIG_FILE")
     sudo bash -c "cat > $DEFAULT_CONFIG_FILE << EOF
-# SpringBoot Server Default Configuration
+# Spring Server Default Configuration
 # This is the system-wide configuration
-# Users can override by creating $HOME/.springboot-server-config.sh
+# Users can override by creating $HOME/.spring-server-config.sh
 TOMCAT_HOME=\"\"
 APP_NAME=\"webapp\"
 APP_WAR_PATH=\"\"
@@ -217,23 +217,23 @@ EOF"
   fi
   
   echo -e "${GREEN}✓ Installation complete!${NC}"
-  echo -e "${BLUE}You can now run 'springboot-server' from anywhere.${NC}"
+  echo -e "${BLUE}You can now run 'spring-server' from anywhere.${NC}"
   echo -e "${BLUE}Make sure to update the script to load libraries from the new location.${NC}"
 }
 
 uninstall_system() {
-  echo -e "${BLUE}Uninstalling SpringBoot Server...${NC}"
+  echo -e "${BLUE}Uninstalling Spring Server...${NC}"
   
   # Remove the script and libraries
-  sudo rm -f /usr/local/bin/springboot-server
-  sudo rm -rf /usr/local/lib/springboot-server
+  sudo rm -f /usr/local/bin/spring-server
+  sudo rm -rf /usr/local/lib/spring-server
   
   # Ask about removing config
   echo -e "${BLUE}Do you want to remove configuration files as well? (y/n)${NC}"
   read -rsn1 remove_config
   if [ "$remove_config" = "y" ]; then
-    sudo rm -rf /etc/springboot-server
-    rm -f "$HOME/.springboot-server-config.sh"
+    sudo rm -rf /etc/spring-server
+    rm -f "$HOME/.spring-server-config.sh"
     echo -e "${GREEN}✓ Configuration files removed.${NC}"
   fi
   
