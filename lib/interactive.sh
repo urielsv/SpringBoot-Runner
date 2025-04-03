@@ -124,7 +124,7 @@ run_interactive_mode() {
 }
 
 show_interactive_header() {
-  echo -e "${BOLD}${CYAN}==== SpringBoot Development Server ====${NC}"
+  echo -e "${BOLD}${CYAN}==== Spring Development Server ====${NC}"
   echo -e "${BOLD}${CYAN}App: ${NC}${APP_NAME} ${BOLD}${CYAN}Profile: ${NC}${SPRING_PROFILES} ${BOLD}${CYAN}Port: ${NC}${PORT}"
   echo -e "${CYAN}----------------------------------------${NC}"
   echo -e "${BOLD}Commands:${NC}"
